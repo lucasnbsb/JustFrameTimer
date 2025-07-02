@@ -1,0 +1,31 @@
+<main class="card w-96 bg-base-100 shadow-sm">
+  <div class="card-body">
+    <h1 class="card-title">Just frame timer</h1>
+    <p>Time your taks with rithm!</p>
+
+    <fieldset class="fieldset">
+      <legend class="fieldset-legend">Seconds</legend>
+      <input
+        type="number"
+        min="0"
+        step="1"
+        class="input"
+        placeholder="Seconds to wait"
+        [formControl]="secondsControl"
+      />
+    </fieldset>
+
+    <div class="stats">
+      <div class="stat">
+        <div class="stat-title">Timer (seconds)</div>
+        <div class="stat-value">{{ $timeRemaining() | milisToSeconds }}</div>
+      </div>
+    </div>
+
+    <div class="card-actions justify-end">
+      <button class="btn btn-primary" (click)="toggleTimer()">
+        {{ $startStopButtonText() }}
+      </button>
+    </div>
+  </div>
+</main>
