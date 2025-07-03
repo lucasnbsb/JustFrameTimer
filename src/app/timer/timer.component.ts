@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit, signal } from '@angular/core';
+import { Component, OnInit, signal, viewChild } from '@angular/core';
 import {
   FormControl,
   FormsModule,
@@ -21,6 +21,8 @@ export class TimerComponent implements OnInit {
   readonly $timeRemaining = signal<number>(0);
 
   readonly DEFAULT_TIME_MILIS = 5000;
+
+  audioElement = viewChild(HTMLAudioElement);
 
   timer = this.getTimer();
 
@@ -50,11 +52,11 @@ export class TimerComponent implements OnInit {
         timeRemainingSignal.set(this.getTimeRemaining());
       },
       totalTime: totalTime,
+      tickSound: this.audioElement(),
     });
   }
 
   toggleTimer() {
     this.timer.toggle();
   }
-
 }

@@ -14,7 +14,7 @@ export class Timer {
 
   TICK_MS = 10;
 
-  
+  _tickSound = new Audio('tick.wav');
 
   noop = () => {}; // Define in ES6 as Lambda (arrow function)
 
@@ -27,7 +27,12 @@ export class Timer {
     this._timeRemaining = this._totalTime;
     this._soundsNumber = opts.soundsNumber || 5;
     this._soundsIntervalMilis;
+    this._tickSound = opts.tickSound || this._tickSound;
     opts.soundsInteval || 500;
+  }
+
+  playTick() {
+    this._tickSound.play();
   }
 
   isActive() {
@@ -41,15 +46,15 @@ export class Timer {
     }
   }
   start() {
-    const _tickSound = new Audio('tick.wav');
     if (!this.isActive()) {
+      const sound = this._tickSound;
       this._stopPoint = Date.now() + this._totalTime;
       this._audioTimers = [];
       for (var i = 0; i < this._soundsNumber; i++) {
         this._audioTimers.push(
           setTimeout(
             function () {
-              _tickSound.play();
+              sound.play();
               // TODO - sound the tick
               // audios[soundTypeDropdown.value].play();
             },

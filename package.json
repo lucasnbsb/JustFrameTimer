@@ -8,7 +8,7 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "lint": "ng lint",
-    "deploy": "npx angular-cli-ghpages --dir=dist/just-frame-timer/browser --no-silent"
+    "deploy": "ng deploy --base-href=/JustFrameTimer/"
   },
   "private": true,
   "dependencies": {
